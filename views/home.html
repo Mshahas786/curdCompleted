@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>CURDCOMPLETED</title>
+</head>
+
+<body>
+
+    <div class="card container mt-2">
+        <h1 class="text-center">Comment App</h1>
+
+
+        <form action="" method="POST" class="container">
+            <div class=" mb-3">
+                <label class="form-label" for="post_title">Comment Title</label>
+                <input class="form-control" type="text" name="title" placeholder="Enter post title" id="post_title"
+                    required>
+            </div>
+            <div class=" mb-3">
+                <label class="form-label" for="post_content">Write your comment</label>
+                <input class="form-control" name="content" id="hmhcontent" placeholder="Write something..." required>
+            </div>
+            <div class=" mb-3">
+                <label class="form-label" for="author_name">Author Name</label>
+                <input class="form-control" type="text" name="author" placeholder="Enter author name" id="author_name"
+                    required>
+            </div>
+
+            <div class=" mb-3">
+                <label class="form-label" for="author_image">Author image</label>
+                <input class="form-control" type="text" name="image" placeholder="Enter author image url" id="author_image"
+                    required>
+            </div>
+
+            <button type="submit" value="POST" class="btn btn-success"> Post</button>
+
+
+        </form>
+
+
+    </div>
+
+    
+        
+    <div class=" container all_posts mt-2">
+        <h3 class="text-center">Latest Updates</h3>
+        {% for post in allpost %}
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+               <div class="card mt-2" style="width: 18rem;">
+                <img src="{{post.image |e}}" class="card-img-top" alt="">
+                <div class="card-body">
+                  <h5 class="card-title">{{post.title |e}}</h5>
+                  <p class="card-text">{{post.content |e}}</p>
+                </div>
+                <div class="card-footer text-muted">
+                    {{post.author |e}}
+                  </div>
+                  <div class="">
+                  <a href="/delete/{{post._id}}" class="btn btn-danger">delete</a>
+                  <a href="/edit/{{post._id}}"  class="btn btn-warning"> edit</a>
+                 </div>
+              </div>
+            </div>
+        </div>
+            {% endfor %}
+    </div>
+
+</body>
+
+</html>
